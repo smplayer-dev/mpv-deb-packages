@@ -7,7 +7,6 @@ on:
 
 jobs:
   build:
-    #runs-on: ubuntu-16.04
     runs-on: ubuntu-latest
     container: 'wachii/ubuntu-qt:16.04'
 
@@ -16,7 +15,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Checkout mpv
-        run: git clone --depth 1 --branch v${{ env.version }} https://github.com/mpv-player/mpv.git .
+        run: git clone --depth 1 --branch v${{ env.version }} https://github.com/mpv-player/mpv.git
 
       - name: Add ffmpeg repository
         run: |
@@ -37,18 +36,14 @@ jobs:
 
       - name: Prepare sources
         run: |
-            #mkdir mpv/debian
-            #cp -R debian/* mpv/debian
-            #cd mpv
+            mkdir mpv/debian
+            cp -R debian/* mpv/debian
+            cd mpv
             ./bootstrap.py
             
-      - name: Setup tmate session
-        uses: mxschmitt/action-tmate@v3
-        if: ${{ false }}
-        
-      - name: Compile
+      - name: Build
         run: |
-            #cd mpv
+            cd mpv
             fakeroot debian/rules build
             fakeroot debian/rules binary
             ls -l ../*.deb
