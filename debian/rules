@@ -6,7 +6,8 @@ export DEB_BUILD_MAINT_OPTIONS := hardening=+all # #741439, #799738
 	dh $@
 
 override_dh_auto_configure:
-	python3 ./waf configure					\
+	GCJFLAGS="" CFLAGS="" CXXFLAGS="" CPPFLAGS="" FFLAGS="" LDFLAGS="" FCFLAGS="" OBJCXXFLAGS="" OBJCFLAGS="" \
+	./waf configure					\
 			--prefix=/usr					\
 			--libdir=/usr/lib/$(DEB_HOST_MULTIARCH)		\
 			--confdir=/etc/mpv				\
@@ -15,10 +16,11 @@ override_dh_auto_configure:
 			--enable-libmpv-shared
 
 override_dh_auto_build:
-	python3 ./waf build
+	GCJFLAGS="" CFLAGS="" CXXFLAGS="" CPPFLAGS="" FFLAGS="" LDFLAGS="" FCFLAGS="" OBJCXXFLAGS="" OBJCFLAGS="" \
+	./waf build
 
 override_dh_auto_install:
-	python3 ./waf install --destdir=debian/tmp
+	./waf install --destdir=debian/tmp
 
 override_dh_install:
 	dh_install --sourcedir=debian/tmp
@@ -27,7 +29,7 @@ override_dh_installchangelogs:
 	dh_installchangelogs RELEASE_NOTES
 
 override_dh_auto_clean:
-	test -s ./waf && python3 ./waf distclean || true
+	test -s ./waf && ./waf distclean || true
 	find . -name "*.pyc" -delete
 
 override_dh_strip:
