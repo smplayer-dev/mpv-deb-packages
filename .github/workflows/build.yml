@@ -1,4 +1,6 @@
 name: Build mpv
+env:
+  version: '0.33.1'
 
 on:
   workflow_dispatch:
@@ -22,8 +24,8 @@ jobs:
 
       - name: Install sources
         run: |
-            wget https://github.com/mpv-player/mpv/archive/refs/tags/v0.33.1.tar.gz
-            tar -xzf v0.33.1.tar.gz
+            wget https://github.com/mpv-player/mpv/archive/refs/tags/v${{ env.version }}.tar.gz
+            tar -xzf v${{ env.version }}.tar.gz
 
       #- name: Install build dependencies
       #  run: sudo apt-get -y install `cat build_depends_xenial.txt`
@@ -40,9 +42,9 @@ jobs:
 
       - name: Prepare sources
         run: |
-            mkdir mpv-0.33.1/debian
-            cp -R debian/* mpv-0.33.1/debian
-            cd mpv-0.33.1
+            mkdir mpv-${{ env.version }}/debian
+            cp -R debian/* mpv-${{ env.version }}/debian
+            cd mpv-${{ env.version }}
             ./bootstrap.py
             
       - name: Setup tmate session
@@ -51,6 +53,7 @@ jobs:
         
       - name: Compile
         run: |
+            cd mpv-${{ env.version }}
             #./waf configure
             #./waf
             fakeroot debian/rules build
