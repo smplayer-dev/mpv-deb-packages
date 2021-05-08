@@ -16,12 +16,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Checkout mpv
-        uses: actions/checkout@v2
-        with:
-          repository: 'mpv-player/mpv'
-          ref: 'v${{ env.version }}'
-          #path: 'mpv'
-          path: '.'
+        run: git clone --depth 1 --branch v${{ env.version }} https://github.com/mpv-player/mpv.git .
 
       - name: Add ffmpeg repository
         run: |
