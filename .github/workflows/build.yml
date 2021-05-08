@@ -42,7 +42,7 @@ jobs:
         shell: bash
         run: |
             mkdir mpv-0.33.1/debian
-            cp debian/* mpv-0.33.1/debian
+            cp -R debian/* mpv-0.33.1/debian
             cd mpv-0.33.1
             ./bootstrap.py
             #./waf configure
