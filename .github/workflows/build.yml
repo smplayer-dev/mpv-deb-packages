@@ -16,17 +16,18 @@ jobs:
         run: |
             sudo add-apt-repository -y ppa:jonathonf/ffmpeg-4
             sudo apt-get -y update
-        
+  
+      - name: Install sources
+        run: |
+            sudo apt-get -y install wget
+            wget https://github.com/mpv-player/mpv/archive/refs/tags/v0.33.1.tar.gz
+            tar xvfz v0.33.1.tar.gz
+
       - name: Install build dependencies
         run: sudo apt-get -y install `cat build_depends_xenial.txt`
 
       - name: Install devscripts
         run: sudo apt-get -y install devscripts equivs
-
-      - name: Install sources
-        run: |
-            wget https://github.com/mpv-player/mpv/archive/refs/tags/v0.33.1.tar.gz
-            tar xvfz v0.33.1.tar.gz
 
       - name: Build
         run: |
