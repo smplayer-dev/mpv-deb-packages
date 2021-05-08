@@ -49,12 +49,11 @@ jobs:
             
       - name: Setup tmate session
         uses: mxschmitt/action-tmate@v3
-        #if: ${{ false }}
+        if: ${{ false }}
         
       - name: Compile
         run: |
             cd mpv-${{ env.version }}
-            #./waf configure
-            #./waf
             fakeroot debian/rules build
             fakeroot debian/rules binary
+            ls -l ../*.deb
