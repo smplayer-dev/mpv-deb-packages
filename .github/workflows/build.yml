@@ -20,24 +20,14 @@ jobs:
         with:
           repository: 'mpv-player/mpv'
           ref: 'v${{ env.version }}'
-          path: 'mpv'
+          #path: 'mpv'
+          path: '.'
 
       - name: Add ffmpeg repository
         run: |
             sudo add-apt-repository -y ppa:jonathonf/ffmpeg-4
             sudo apt-get -y update
   
-      #- name: Install wget
-      #  run: sudo apt-get -y install wget
-
-      #- name: Install sources
-      #  run: |
-      #      wget https://github.com/mpv-player/mpv/archive/refs/tags/v${{ env.version }}.tar.gz
-      #      tar -xzf v${{ env.version }}.tar.gz
-
-      #- name: Install build dependencies
-      #  run: sudo apt-get -y install `cat build_depends_xenial.txt`
-
       - name: Install devscripts
         run: sudo apt-get -y install devscripts equivs
 
@@ -51,9 +41,9 @@ jobs:
 
       - name: Prepare sources
         run: |
-            mkdir mpv/debian
-            cp -R debian/* mpv/debian
-            cd mpv
+            #mkdir mpv/debian
+            #cp -R debian/* mpv/debian
+            #cd mpv
             ./bootstrap.py
             
       - name: Setup tmate session
@@ -62,7 +52,7 @@ jobs:
         
       - name: Compile
         run: |
-            cd mpv
+            #cd mpv
             fakeroot debian/rules build
             fakeroot debian/rules binary
             ls -l ../*.deb
