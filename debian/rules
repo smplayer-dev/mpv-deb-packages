@@ -17,10 +17,10 @@ override_dh_auto_configure:
 
 
 override_dh_auto_build:
-	python ./waf -v build
+	python ./waf build
 
 override_dh_auto_install:
-	python ./waf -v install --destdir=debian/tmp
+	python ./waf install --destdir=debian/tmp
 
 override_dh_install:
 	dh_install --sourcedir=debian/tmp
@@ -29,7 +29,7 @@ override_dh_installchangelogs:
 	dh_installchangelogs RELEASE_NOTES
 
 override_dh_auto_clean:
-	test -s ./waf && python ./waf -v distclean || true
+	test -s ./waf && python ./waf distclean || true
 	find . -name "*.pyc" -delete
 
 override_dh_strip:
