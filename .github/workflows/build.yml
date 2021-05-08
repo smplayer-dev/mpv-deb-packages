@@ -23,7 +23,7 @@ jobs:
       - name: Install sources
         run: |
             wget https://github.com/mpv-player/mpv/archive/refs/tags/v0.33.1.tar.gz
-            tar xfz v0.33.1.tar.gz
+            tar --strip-components=1 -xzf v0.33.1.tar.gz
 
       #- name: Install build dependencies
       #  run: sudo apt-get -y install `cat build_depends_xenial.txt`
@@ -40,7 +40,8 @@ jobs:
 
       - name: Build
         run: |
-            cd mpv-0.33.1
+            #cd mpv-0.33.1
             ./bootstrap.py
-            ./waf configure
-            ./waf
+            .#/waf configure
+            .#/waf
+            fakeroot debian/rules build
