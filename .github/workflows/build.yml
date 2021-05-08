@@ -12,20 +12,28 @@ jobs:
     container: 'wachii/ubuntu-qt:16.04'
 
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Checkout mpv
+        uses: actions/checkout@v2
+        with:
+          repository: 'https://github.com/mpv-player/mpv/'
+          ref: '0.33.1'
+          path: 'mpv'
 
       - name: Add repository
         run: |
             sudo add-apt-repository -y ppa:jonathonf/ffmpeg-4
             sudo apt-get -y update
   
-      - name: Install wget
-        run: sudo apt-get -y install wget
+      #- name: Install wget
+      #  run: sudo apt-get -y install wget
 
-      - name: Install sources
-        run: |
-            wget https://github.com/mpv-player/mpv/archive/refs/tags/v${{ env.version }}.tar.gz
-            tar -xzf v${{ env.version }}.tar.gz
+      #- name: Install sources
+      #  run: |
+      #      wget https://github.com/mpv-player/mpv/archive/refs/tags/v${{ env.version }}.tar.gz
+      #      tar -xzf v${{ env.version }}.tar.gz
 
       #- name: Install build dependencies
       #  run: sudo apt-get -y install `cat build_depends_xenial.txt`
@@ -35,7 +43,7 @@ jobs:
 
       - name: Install build dependencies
         run: |
-            dch -b -v ${{ env.version }}-1~`lsb_release -is`-`lsb_release -cs` "Automatic build"
+            dch -b -v ${{ env.version }}-1~`lsb_release -cs` "Automatic build"
             mk-build-deps
             ls *.deb
             dpkg --info ./mpv-build-deps*.deb
@@ -43,9 +51,9 @@ jobs:
 
       - name: Prepare sources
         run: |
-            mkdir mpv-${{ env.version }}/debian
-            cp -R debian/* mpv-${{ env.version }}/debian
-            cd mpv-${{ env.version }}
+            mkdir mpv/debian
+            cp -R debian/* mpv/debian
+            cd mpv
             ./bootstrap.py
             
       - name: Setup tmate session
@@ -54,7 +62,7 @@ jobs:
         
       - name: Compile
         run: |
-            cd mpv-${{ env.version }}
+            cd mpv
             fakeroot debian/rules build
             fakeroot debian/rules binary
             ls -l ../*.deb
