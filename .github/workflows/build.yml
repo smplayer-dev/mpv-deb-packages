@@ -1,0 +1,26 @@
+name: Build mpv
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    #runs-on: ubuntu-16.04
+    runs-on: ubuntu-latest
+    container: 'wachii/ubuntu-qt:16.04'
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Add repository
+        run: |
+            sudo add-apt-repository -y ppa:jonathonf/ffmpeg-4
+            sudo apt-get -y update
+        
+      #- name: Install build dependencies
+      #  run: sudo apt-get install `cat build_depends_xenial.txt`
+
+      - name: Install devscripts
+        run: |
+            sudo apt-get -y update
+            sudo apt-get -y install devscripts equivs
