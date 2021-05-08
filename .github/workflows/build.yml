@@ -38,13 +38,19 @@ jobs:
             dpkg --info ./mpv-build-deps*.deb
             sudo apt-get -y install ./mpv-build-deps*.deb --no-install-recommends
 
-      - name: Build
+      - name: Prepare sources
         shell: bash
         run: |
             mkdir mpv-0.33.1/debian
             cp -R debian/* mpv-0.33.1/debian
             cd mpv-0.33.1
             ./bootstrap.py
+            
+      - name: Setup tmate session
+        uses: mxschmitt/action-tmate@v3
+        
+      - name: Compile
+        run: |
             #./waf configure
             #./waf
             fakeroot debian/rules build
