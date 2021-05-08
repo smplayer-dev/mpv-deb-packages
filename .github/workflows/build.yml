@@ -47,11 +47,9 @@ jobs:
             fakeroot debian/rules build
             fakeroot debian/rules binary
             ls -l ../*.deb
-            mkdir packages
-            mv ../*.deb packages/
 
       - name: Create artifact
         uses: actions/upload-artifact@v2
         with:
           name: mpv-${{ env.version }}
-          path: ./packages/*
+          path: ./*.deb
