@@ -21,9 +21,7 @@ jobs:
         run: sudo apt-get install `cat build_depends_xenial.txt`
 
       - name: Install devscripts
-        run: |
-            sudo apt-get -y update
-            sudo apt-get -y install devscripts equivs
+        run: sudo apt-get -y install devscripts equivs
 
       - name: Install sources
         run: |
