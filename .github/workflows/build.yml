@@ -25,6 +25,7 @@ jobs:
 
       - name: Add ffmpeg repository
         run: |
+            ls
             sudo add-apt-repository -y ppa:jonathonf/ffmpeg-4
             sudo apt-get -y update
   
