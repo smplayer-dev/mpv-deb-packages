@@ -5,43 +5,84 @@ Maintainer: Debian Multimedia Maintainers <pkg-multimedia-maintainers@lists.alio
 Uploaders: Alessandro Ghedini <ghedo@debian.org>,
  Reinhard Tartler <siretart@tauware.de>
 Build-Depends: debhelper (>= 9),
+ autoconf,
+ automake,
+ c-compiler | gcc,
+ ladspa-sdk,
+ libarchive-dev,
  libasound2-dev [linux-any],
  libass-dev (>= 0.12.1~),
- libavcodec-dev (>= 7:2.4~),
- libavdevice-dev (>= 7:2.4~),
- libavfilter-dev (>= 7:2.4~),
- libavformat-dev (>= 7:2.4~),
- libavresample-dev (>= 7:2.4~),
- libavutil-dev (>= 7:2.4~),
+ libavcodec-dev (>= 7:4.3~),
+ libavdevice-dev (>= 7:4.3~),
+ libavfilter-dev (>= 7:4.3~),
+ libavformat-dev (>= 7:4.3~),
+ libavresample-dev (>= 7:4.3~),
+ libavutil-dev (>= 7:4.3~),
  libbluray-dev,
+ libbrotli-dev,
+ libbs2b-dev,
+ libcaca-dev,
  libcdio-paranoia-dev,
+ libdav1d-dev,
+ libdrm-dev,
  libdvdnav-dev,
  libdvdread-dev,
  libegl1-mesa-dev [linux-any],
  libenca-dev,
+ libfontconfig-dev,
+ libfreetype6-dev,
+ libfribidi-dev,
+ libgbm-dev,
  libgl1-mesa-dev,
+ libgme-dev,
+ libgnutls-dev | libgnutls28-dev,
+ libgsm1-dev,
  libguess-dev,
- libjack-dev,
+ libharfbuzz-dev,
+ libjack-jackd2-dev | libjack-dev,
  libjpeg-dev,
  liblcms2-dev (>= 2.6~),
- liblua5.2-dev,
+ liblircclient-dev,
+ liblua5.2-dev | liblua5.1-0-dev,
+ libmodplug-dev,
+ libmp3lame-dev,
+ libopenal-dev,
+ libopencore-amrnb-dev,
+ libopencore-amrwb-dev,
+ libopus-dev,
  libpulse-dev,
+ librtmp-dev,
  librubberband-dev,
  libsdl2-dev,
  libsndio-dev (>= 1.0.1),
- libswscale-dev (>= 7:2.4~),
- libva-dev,
+ libsoxr-dev,
+ libspeex-dev,
+ libssh-dev,
+ libswscale-dev (>= 7:4.3~),
+ libtool,
+ libuchardet-dev,
+ libv4l-dev [!hurd-any],
+ libva-dev [!hurd-any],
  libvdpau-dev,
+ libvo-amrwbenc-dev,
+ libvorbis-dev,
+ libvpx-dev,
  libwayland-dev [linux-any],
  libx11-dev,
+ libx264-dev,
+ libxext-dev,
  libxinerama-dev,
  libxkbcommon-dev [linux-any],
  libxrandr-dev,
  libxss-dev,
  libxv-dev,
+ libxvidcore-dev,
  pkg-config,
- python,
- python-docutils,
+ python3,
+ python3-docutils,
+ x11proto-core-dev,
+ yasm,
+ zlib1g-dev
 Standards-Version: 3.9.6
 Homepage: http://mpv.io/
 Vcs-Git: git://anonscm.debian.org/pkg-multimedia/mpv.git
@@ -50,7 +91,7 @@ Vcs-Browser: http://anonscm.debian.org/gitweb/?p=pkg-multimedia/mpv.git
 Package: mpv
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
-Recommends: xdg-utils, youtube-dl (>= 2014.11.26)
+Recommends: xdg-utils, youtube-dl
 Multi-Arch: foreign
 Description: video player based on MPlayer/mplayer2
  mpv is a movie player based on MPlayer and mplayer2. It supports a wide
@@ -84,7 +125,7 @@ Package: libmpv1
 Section: libs
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
-Recommends: youtube-dl (>= 2014.11.26)
+Recommends: youtube-dl
 Pre-Depends: ${misc:Pre-Depends}
 Multi-Arch: same
 Description: video player based on MPlayer/mplayer2 (client library)
