@@ -27,12 +27,12 @@ jobs:
 
       - name: Add ffmpeg repository
         if: ${{ matrix.config.name == 'xenial' }}
-        run: |
-            sudo add-apt-repository -y ppa:jonathonf/ffmpeg-4
-            sudo apt-get -y update
+        run: sudo add-apt-repository -y ppa:jonathonf/ffmpeg-4
   
       - name: Install devscripts
-        run: sudo apt-get -y install devscripts equivs
+        run: |
+            sudo apt-get -y update
+            sudo apt-get -y install devscripts equivs
 
       - name: Install build dependencies
         run: |
