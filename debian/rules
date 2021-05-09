@@ -10,30 +10,13 @@ override_dh_auto_configure:
 			--prefix=/usr \
 			--libdir=/usr/lib/$(DEB_HOST_MULTIARCH) \
 			--confdir=/etc/mpv \
-			--enable-cdda --enable-sdl2 \
 			--enable-libmpv-shared \
+			--enable-cdda \
+			--enable-sdl2 \
 			--enable-gl-x11 \
-			--enable-gnutls \
-			--enable-libgme \
-			--enable-libgsm \
-			--enable-libmodplug \
-			--enable-libmp3lame \
-			--enable-libopus \
-			--enable-libpulse \
-			--enable-libsoxr \
-			--enable-libspeex \
-			--enable-libssh \
-			--enable-libvorbis \
-			--enable-libvpx \
-			--enable-ladspa \
-			--enable-libbs2b \
-			--enable-gpl \
-			--enable-version3 \
-			--enable-libxvid \
-			--enable-libx264 \
-			--enable-libopencore-amrnb \
-			--enable-libopencore-amrwb \
-			--enable-libvo-amrwbenc
+			--enable-openal \
+			--enable-dvdnav \
+			--enable-cdda
 
 override_dh_auto_build:
 	./waf build
