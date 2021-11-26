@@ -1,6 +1,7 @@
 name: Build mpv
 env:
-  version: '0.33.1'
+  #version: '0.33.1'
+  version: '0.34.0'
 
 on:
   workflow_dispatch:
