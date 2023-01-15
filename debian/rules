@@ -13,7 +13,7 @@ override_dh_auto_configure:
 			--enable-libmpv-shared \
 			--enable-cdda \
 			--enable-sdl2 \
-			--enable-gl-x11 \
+			#--enable-gl-x11 \
 			--enable-openal \
 			--enable-dvdnav \
 			--enable-cdda
