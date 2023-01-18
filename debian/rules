@@ -16,7 +16,7 @@ override_dh_auto_configure:
 			--enable-openal \
 			--enable-dvdnav \
 			--enable-cdda \
-			--disable-drm --disable-egl-drm --disable-vaapi-drm
+			--disable-drm
 
 override_dh_auto_build:
 	./waf build
